@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./script.js" />
+    <style>
+      @media screen and (max-width: 768px) {
+        header {
+          padding: 10px;
+        }
+
+        nav ul {
+          flex-direction: column;
+        }
+
+        nav a {
+          padding: 10px 0;
+        }
+
+        .about-me-container {
+          padding: 10px;
+        }
+
+        .about-me-content {
+          flex-direction: column;
+        }
+
+        .about-me-left,
+        .about-me-right {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .portrait {
+          max-width: auto;
+          height: auto;
+        }
+
+        .experience .left,
+        .experience .right {
+          flex: 1;
+          display: block;
+        }
+
+        .hat {
+          float: none;
+          height: auto;
+        }
+
+        .exp {
+          height: auto;
+        }
+      }
+      @media screen and (min-width: 769px) {
+        .portrait {
+          max-width: 500px;
+          height: auto;
+        }
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      nav {
+        background-color: #333;
+        text-align: center;
+        border-radius: 0 0 20px 20px;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+      }
+
+      nav li {
+        margin: 0;
+        padding: 0;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+        display: block;
+        transition: background-color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: #93b7ff;
+        border-radius: 10px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .about-me-container {
+        background-color: #93b7ff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(3, 15, 92);
+        margin: 20px auto;
+        max-width: 800px;
+        color: #fff;
+      }
+      h2 {
+        font-size: 60px;
+        color: #2424f361;
+      }
+      .hello {
+        font-size: 25px;
+      }
+      .about-me-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .about-me-left {
+        width: calc(50% - 10px);
+        margin-bottom: 20px;
+        border-radius: 20px;
+      }
+
+      .about-me-right {
+        width: calc(50% - 10px);
+        margin-bottom: 20px;
+        border-radius: 20px;
+        align-self: flex-start;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .one {
+        background-color: #2424f361;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(164, 246, 255);
+        border-radius: 100%;
+      }
+      .two {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(164, 246, 255);
+        border-radius: 100%;
+        background-color: #2424f361;
+      }
+      .portrait {
+        max-width: 100%;
+        height: 500px;
+        border-radius: 50%;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(164, 246, 255);
+      }
+
+      .show-portrait {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .hearder2 {
+        height: 40px;
+        transition: transform 0.3s ease;
+      }
+
+      .hearder2:hover {
+        transform: rotate(360deg);
+      }
+
+      #skills {
+        background-color: #93b7ff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(3, 15, 92);
+        margin: 20px auto;
+        max-width: 800px;
+        text-align: center;
+      }
+      .education {
+        background-color: #93b7ff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(3, 15, 92);
+        margin: 20px auto;
+
+        max-width: 800px;
+      }
+      .experience {
+        background-color: #93b7ff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(3, 15, 92);
+        margin: 20px auto;
+
+        max-width: 800px;
+      }
+      #skills h2 {
+        margin: 0;
+        color: #fff;
+        font-size: 40px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      ul li {
+        margin-bottom: 5px;
+        color: #fff;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+      }
+      .logo {
+        max-width: 100%;
+        height: 80px;
+        transition: transform 0.3s ease;
+        border-radius: 5px;
+      }
+
+      .logo:hover {
+        transform: rotateY(180deg);
+      }
+
+      .logo::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        backface-visibility: hidden;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+      }
+
+      .logo:hover::after {
+        opacity: 1;
+      }
+      .www {
+        max-width: 100%;
+        height: 40px;
+        margin: 10px;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .show-logo {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      h3 {
+        color: white;
+        font-size: 25px;
+      }
+      .time {
+        color: rgb(119, 111, 111);
+      }
+      .hat {
+        float: right;
+        height: 80px;
+      }
+      .exp {
+        height: 200px;
+      }
+
+      .experience {
+        background-color: #93b7ff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(3, 15, 92);
+
+        max-width: 800px;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+
+      .experience .left {
+        flex: 18;
+      }
+
+      .experience .right {
+        flex: 1;
+        display: flex;
+      }
+
+      .container {
+        background-color: #93b7ff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgb(3, 15, 92);
+        margin: 20px auto;
+        color: #fff;
+        max-width: 800px;
+      }
+
+      .container h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        display: block;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #1248b573;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: #93b7ff;
+      }
+
+      .form-group textarea {
+        height: 150px;
+      }
+
+      .submit-btn {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .submit-btn:hover {
+        background-color: #fff;
+        color: #93b7ff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><img src="kwat.jpg" alt="kwiat" class="hearder2" /></h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#about-me">About me</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Work Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="./certificates.html">Certificates</a></li>
+        <li><a href="./certificates.html">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div class="about-me-container" id="about-me">
+        <br />
+        <br />
+        <br />
+        <p class="hello">Hello, My name is</p>
+        <br />
+
+        <h2>Wiktoria Grubizna</h2>
+
+        <a href="https://github.com/viktoriagrubi" target="_blank">
+          <img src="github.jpg" alt="logo" class="www" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/wiktoria-grubizna-932a19241/"
+          target="_blank"
+        >
+          <img src="in.jpg" alt="logo" class="www" />
+        </a>
+        <a href="https://www.instagram.com/viktoriagrubi/" target="_blank">
+          <img src="instagram.jpg" alt="logo" class="www" />
+        </a>
+        <br />
+        <br />
+        <div class="about-me-content">
+          <div class="about-me-left">
+            <p>
+              I am studying
+              <span style="color: #2424f361"><b>computer science </b></span>in
+              the last semester of my engineering studies.
+            </p>
+            <p>In college, I do data analysis and IT systems design.</p>
+            <p>
+              I am a
+              <span style="color: #2424f361"><b>Frontend Developer,</b></span>
+              I have completed certificate courses,
+            </p>
+            <p>
+              which you can see in the
+              <span style="color: #2424f361"><b>certificates</b></span> tab.
+            </p>
+
+            <p>
+              I love gaining new experiences. In my life, I put development
+              first.
+            </p>
+            <p>I am ambitious and consistently strive for my goals.</p>
+            <p>
+              In my free time, I am interested in mathematics, dancing, horse
+              riding and a healthy lifestyle.
+            </p>
+            <p>
+              My dream is to work in IT, I have already completed
+              <span style="color: #2424f361"
+                ><b>a summer internship as a Frontend Developer. </b></span
+              >
+            </p>
+          </div>
+          <div class="about-me-right">
+            <img
+              src="cvzdj.jpg"
+              alt="Fotka Wiktorii Grubizna"
+              class="portrait"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="education" id="education">
+        <div class="left">
+          <br />
+          <div class="right">
+            <img src="hat.jpg" alt="Hat" class="hat" />
+          </div>
+          <h3>Education</h3>
+          <br />
+          <br />
+
+          <p class="time">October 2019 - Present</p>
+
+          <h3>Computer science, design of IT systems and data analysis.</h3>
+          <br />
+          <p>
+            <span style="color: #2424f361"
+              ><b>University Dolnośląski DSW, Wroclaw</b></span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="experience" id="experience">
+        <div class="left">
+          <br />
+          <h3>Work Experience</h3>
+          <br />
+          <br />
+          <p class="time">July 2023 - September 2023</p>
+          <h3>Internship Frontend Developer</h3>
+          <p class="time">
+            Creating network topologies, graphs, charts, and creating websites
+            from the frontend. Using GitHub to create a project.
+          </p>
+          <br />
+          <p>
+            <span style="color: #2424f361"
+              ><b>Company: Wasko S.A. in Warsaw</b></span
+            >
+          </p>
+        </div>
+        <div class="right">
+          <img src="exp.jpg" alt="exp" class="exp" />
+        </div>
+      </div>
+      <div id="skills">
+        <div class="logo-container">
+          <img src="htmlzdjecie.jpg" alt="HTML logo" class="logo" />
+        </div>
+        <div class="one">
+          <h2>Tech skills</h2>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>SQL</li>
+            <li>Git & Github</li>
+          </ul>
+        </div>
+        <br />
+        <div class="two">
+          <h2>Soft skills</h2>
+          <ul>
+            <li>Scrum</li>
+            <li>Problem solving</li>
+            <li>Teamwork</li>
+            <li>Communication</li>
+            <li>Adaptability</li>
+            <li>Critical thinking</li>
+            <li>Time management</li>
+            <li>Interpersonal</li>
+            <li>Analytical thinking</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container" id="contact">
+        <h1>Contact Me</h1>
+        <form action="https://formspree.io/f/xbjvpwrj" method="POST">
+          <div class="form-group">
+            <label for="nazwa">Name:</label>
+            <input type="text" id="nazwa" name="nazwa" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="temat">Subject:</label>
+            <input type="text" id="temat" name="temat" required />
+          </div>
+
+          <div class="form-group">
+            <label for="tresc">Message:</label>
+            <textarea id="tresc" name="wiadomosc" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <br />
+        <ul>
+          <li>
+            <a href="mailto:wiktoria.grubizna.praca@gmail.com"
+              ><b>E-mail: wiktoria.grubizna.praca@gmail.com</b></a
+            >
+          </li>
+          <li>
+            <a href="tel:+48795757008"><b>Phone: +48 795 757 008</b></a>
+          </li>
+        </ul>
+      </div>
+    </main>
+    <footer>&copy; 2023 Wiktoria Grubizna</footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const aboutMeRight = document.querySelector(".about-me-right");
+        aboutMeRight.classList.add("show-portrait");
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const logoElements = document.querySelectorAll(".www");
+        logoElements.forEach((element) => {
+          element.classList.add("show-logo");
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const nameInput = document.getElementById("nazwa");
+        const emailInput = document.getElementById("email");
+        const subjectInput = document.getElementById("temat");
+        const messageInput = document.getElementById("tresc");
+        const submitButton = document.querySelector(".submit-btn");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (
+            nameInput.value.trim() === "" ||
+            emailInput.value.trim() === "" ||
+            subjectInput.value.trim() === "" ||
+            messageInput.value.trim() === ""
+          ) {
+            alert("All form fields are required.");
+            return;
+          }
+
+          // Wyślij dane do Formspree
+          form.submit();
+
+          // Wyświetl komunikat o sukcesie
+          alert("Message was sent successfully!");
+
+          // Opcjonalnie można wyczyścić pola formularza po wysłaniu
+          nameInput.value = "";
+          emailInput.value = "";
+          subjectInput.value = "";
+          messageInput.value = "";
+        });
+      });
+    </script>
+  </body>
+</html>
